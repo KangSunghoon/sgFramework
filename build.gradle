@@ -1,0 +1,50 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.versions = [
+            minSdk              : 21,
+            compileSdk          : 30,
+            versionCode         : 10000,
+            versionName         : '1.00.00',
+
+            // gradle plugins
+            gradleBuildTool     : '4.0.1',
+            versionPlugin       : '0.23.0',
+
+            // kotlin
+            kotlin              : '1.4.21'
+    ]
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+
+        classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.github.ben-manes:gradle-versions-plugin:$versions.versionPlugin"
+
+        classpath "com.google.gms:google-services:4.3.4"  // Google Services plugin
+        classpath "com.google.firebase:firebase-crashlytics-gradle:2.4.1"  // Crashlytics plugin
+
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
+
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
