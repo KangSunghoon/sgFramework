@@ -31,5 +31,5 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':sgFramework')
+    implementation project(path: ':library')
 }

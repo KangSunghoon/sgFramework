@@ -1,3 +1,3 @@
-include ':sgFramework'
+include ':library'
 include ':app'
 rootProject.name = "sgFramework"
