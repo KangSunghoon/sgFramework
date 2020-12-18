@@ -2,5 +2,10 @@
     <string name="close">닫기</string>
     <string name="cancel">취소</string>
     <string name="confirm">확인</string>
+    <string name="loading">로딩중...</string>
     <string name="toast_description">Toast message</string>
+
+    <!-- Permission 관련 -->
+    <string name="setting">설정</string>
+    <string name="deny_permission">권한이 거부되어 앱을 \n정상적으로 이용할 수 없습니다.\n시스템 설정에서 권한 설정 후 이용하세요.</string>
 </resources>
