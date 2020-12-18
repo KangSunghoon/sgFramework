@@ -35,3 +35,5 @@ const val IS_FALSE: String = "N"
 /** InputStream Buffer  */
 const val BUFFER_SIZE: Int = 8192
 
+const val SD_CARD = "sdCard"
+const val EXTERNAL_SD_CARD = "externalSdCard"

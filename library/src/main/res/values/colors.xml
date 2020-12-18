@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="RGB_00000000">#00000000</color>
+    <color name="RGB_80FFFFFF">#80FFFFFF</color>
+    <color name="RGB_AB1C1C1E">#AB1C1C1E</color>
+    <color name="RGB_FF000000">#FF000000</color>
+    <color name="RGB_FFFFFFFF">#FFFFFFFF</color>
+    <color name="RGB_FFFFA900">#FFFFA900</color>
+    <color name="RGB_FFB1B1B1">#FFB1B1B1</color>
+    <color name="RGB_FFCCCCCC">#FFCCCCCC</color>
+    <color name="RGB_FFD50000">#FFD50000</color>
+    <color name="RGB_FFD9D9D9">#FFD9D9D9</color>
+    <color name="RGB_FFE8E8E8">#FFE8E8E8</color>
+    <color name="RGB_FFF5F5F5">#FFF5F5F5</color>
+    <color name="RGB_FF00BCD4">#FF00BCD4</color>
+    <color name="RGB_FF1C1C1E">#FF1C1C1E</color>
+    <color name="RGB_FF232323">#FF232323</color>
+    <color name="RGB_FF329AFF">#FF329AFF</color>
+    <color name="RGB_FF353A3E">#FF353A3E</color>
+    <color name="RGB_FF388E3C">#FF388E3C</color>
+    <color name="RGB_FF3F51B5">#FF3F51B5</color>
+    <color name="RGB_FF666666">#FF666666</color>
+    <color name="RGB_FF757575">#FF757575</color>
+    <color name="RGB_FF888888">#FF888888</color>
+    <color name="RGB_FF999999">#FF999999</color>
+
+    <!-- btn_bg_color_selector -->
+    <color name="RGB_FF09D36E">#FF09D36E</color>	<!-- normal -->
+    <color name="RGB_6609D36E">#6609D36E</color>	<!-- disable -->
+</resources>
