@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_rounded"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Dialog Title Message -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="36dp"
+            android:textColor="@color/RGB_FF000000"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:letterSpacing ="-0.02"
+            android:gravity="center_horizontal"
+            android:visibility="gone"/>
+
+        <!-- divider -->
+        <LinearLayout
+            android:id="@+id/title_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+        <!-- Dialog Message -->
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:textColor="@color/RGB_FF666666"
+            android:textSize="14dp"
+            android:letterSpacing="-0.03"
+            android:gravity="center_horizontal"
+            android:visibility="gone"/>
+
+        <!-- Dialog 리스트뷰 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/RGB_FFFFFFFF"
+            android:cacheColorHint="@color/RGB_00000000"
+            android:divider="@color/RGB_00000000"
+            android:dividerHeight="0px"
+            android:fadeScrollbars="true"
+            android:overScrollMode="never"
+            android:fadingEdge="none"
+            android:visibility="gone" />
+
+        <!-- 입력처리 레이아웃 -->
+        <LinearLayout
+            android:id="@+id/input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/input_basic_selector"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <!-- 패스워드 입력 및 삭제버튼 -->
+            <EditText
+                android:id="@+id/input"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/enter_password"
+                android:maxLines="1"
+                android:textColor="@color/RGB_FF232323"
+                android:textColorHint="@color/RGB_FF999999"
+                android:textSize="15sp"
+                android:inputType="textPassword" />
+            <ImageButton
+                android:id="@+id/input_clear"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_delete"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 버튼 레이아웃 -->
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="37dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- divider -->
+        <LinearLayout
+            android:id="@+id/button_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/primary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_primary_selector"
+                android:text="@android:string/no"
+                android:textColor="@color/RGB_FFFFFFFF"
+                android:textSize="14dp"
+                android:letterSpacing="-0.03" />
+
+            <LinearLayout
+                android:id="@+id/button_vertical_divider"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/secondary"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_secondary_selector"
+                android:text="@android:string/yes"
+                android:textColor="@color/RGB_FFFFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

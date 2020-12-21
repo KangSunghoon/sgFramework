@@ -5,6 +5,9 @@
     <string name="loading">로딩중...</string>
     <string name="toast_description">Toast message</string>
 
+    <!-- dialog 관련 -->
+    <string name="enter_password">비밀번호를 입력하세요</string>
+
     <!-- Permission 관련 -->
     <string name="setting">설정</string>
     <string name="deny_permission">권한이 거부되어 앱을 \n정상적으로 이용할 수 없습니다.\n시스템 설정에서 권한 설정 후 이용하세요.</string>

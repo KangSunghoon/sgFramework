@@ -25,17 +25,14 @@ import com.ksfams.sgframework.extensions.visible
  */
 
 internal class LoadingDialog(context: Context,
-                             message: CharSequence?,
-                             isBackKey: Boolean = false) : Dialog(context, R.style.AppTheme_Dialog) {
-
-    /** 백키 사용 여부 정의 : Default 미사용  */
-    private val mIsBackKey = isBackKey
+                             val message: CharSequence?,
+                             val isBackKey: Boolean = false) : Dialog(context, R.style.AppTheme_Dialog) {
 
     // 바인딩
     private lateinit var binding: DialogLoadingBinding
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return if (mIsBackKey) {
+        return if (isBackKey) {
             when (keyCode) {
                 KeyEvent.KEYCODE_BACK -> dismiss()
             }
@@ -49,7 +46,7 @@ internal class LoadingDialog(context: Context,
         return false
     }
 
-    private fun initLayout(context: Context, message: CharSequence?) {
+    private fun initLayout() {
         binding = DialogLoadingBinding.inflate(LayoutInflater.from(context))
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -75,6 +72,6 @@ internal class LoadingDialog(context: Context,
     }
 
     init {
-        this.initLayout(context, message)
+        this.initLayout()
     }
 }
