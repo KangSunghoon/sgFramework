@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ksfams.sgframework.databinding.DialogBinding
 import com.ksfams.sgframework.extensions.*
 import com.ksfams.sgframework.ui.dialog.adapter.DialogAdapter
+import com.ksfams.sgframework.ui.dialog.builder.DialogBuilder
 import com.ksfams.sgframework.ui.dialog.listener.OnConfirmClickedListener
 import com.ksfams.sgframework.ui.dialog.listener.OnItemClickedListener
-import com.ksfams.sgframework.ui.dialog.manager.DialogManager
 
 /**
  *
@@ -66,7 +66,7 @@ internal class CommonDialog(context: Context,
     private lateinit var binding: DialogBinding
 
     // Dialog Manager config
-    private val dialogConfig = DialogManager.getConfig()
+    private val dialogConfig = DialogBuilder.getConfig()
 
     private fun initLayout() {
         binding = DialogBinding.inflate(LayoutInflater.from(context))
@@ -94,10 +94,11 @@ internal class CommonDialog(context: Context,
             binding.title.setTypeface(null, dialogConfig.titleTypeface)
             binding.title.letterSpacing = dialogConfig.titleLetterSpacing
             binding.title.gravity = dialogConfig.textAlignment
-            binding.title.topMargin = dialogConfig.titleLineTopPadding ?: 0
+            binding.title.topMargin = dialogConfig.titleTopSpacing
             binding.title.leftMargin = dialogConfig.titleHorizontalSpacing
             binding.title.rightMargin = dialogConfig.titleHorizontalSpacing
-            binding.title.visible()
+            binding.title.bottomMargin = dialogConfig.titleBottomSpacing
+            binding.titleBackground.visible()
         }
 
         // 타이틀 구분선 처리
@@ -106,7 +107,7 @@ internal class CommonDialog(context: Context,
             val titleDividerLayoutParam = titleDividerLayout.layoutParams
             titleDividerLayoutParam.height = dialogConfig.titleLineHeight
             titleDividerLayout.setBackgroundColor(context.color(dialogConfig.titleLineColor))
-            titleDividerLayout.topMargin = dialogConfig.titleLineTopPadding ?: 0
+            titleDividerLayout.bottomMargin = dialogConfig.titleLineBottomPadding
             titleDividerLayout.leftMargin = dialogConfig.titleLineHorizontalPadding ?: 0
             titleDividerLayout.rightMargin = dialogConfig.titleLineHorizontalPadding ?: 0
             titleDividerLayout.visible()
@@ -121,7 +122,7 @@ internal class CommonDialog(context: Context,
             binding.message.letterSpacing = dialogConfig.messageLetterSpacing
             binding.message.maxLines = dialogConfig.messageLineLimit
             binding.message.gravity = dialogConfig.textAlignment
-            binding.message.topMargin = dialogConfig.messageTopSpacing ?: 0
+            binding.message.topMargin = dialogConfig.messageTopSpacing
             binding.message.leftMargin = dialogConfig.messageHorizontalSpacing
             binding.message.rightMargin = dialogConfig.messageHorizontalSpacing
             binding.message.visible()

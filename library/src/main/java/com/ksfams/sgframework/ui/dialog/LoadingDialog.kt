@@ -26,7 +26,7 @@ import com.ksfams.sgframework.extensions.visible
 
 internal class LoadingDialog(context: Context,
                              val message: CharSequence?,
-                             val isBackKey: Boolean = false) : Dialog(context, R.style.AppTheme_Dialog) {
+                             private val isBackKey: Boolean = false) : Dialog(context, R.style.AppTheme_Dialog) {
 
     // 바인딩
     private lateinit var binding: DialogLoadingBinding

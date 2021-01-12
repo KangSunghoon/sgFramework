@@ -11,26 +11,33 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Dialog Title Message -->
-        <TextView
-            android:id="@+id/title"
+        <LinearLayout
+            android:id="@+id/title_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="36dp"
-            android:textColor="@color/RGB_FF000000"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:letterSpacing ="-0.02"
-            android:gravity="center_horizontal"
-            android:visibility="gone"/>
+            android:layout_marginBottom="18dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="13dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <!-- Dialog Title Message -->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/RGB_FF232323"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"/>
+        </LinearLayout>
 
         <!-- divider -->
         <LinearLayout
             android:id="@+id/title_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical"
             android:visibility="gone"/>
 
@@ -39,9 +46,8 @@
             android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:textColor="@color/RGB_FF666666"
             android:textSize="14dp"
             android:letterSpacing="-0.03"
@@ -68,8 +74,8 @@
             android:id="@+id/input_layout"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:background="@drawable/input_basic_selector"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -103,7 +109,7 @@
         android:id="@+id/button_layout"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="14dp"
         android:orientation="vertical"
         android:visibility="gone">
 
