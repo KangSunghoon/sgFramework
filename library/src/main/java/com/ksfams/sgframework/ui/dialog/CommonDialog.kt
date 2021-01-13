@@ -24,7 +24,6 @@ import com.ksfams.sgframework.ui.dialog.listener.OnItemClickedListener
  *
  * Dialog 처리
  *
- * @property context: Context
  * @property title: optional Dialog Title Text
  * @property message: optional Dialog Message Text.
  * @property adapter: 리스트에 표시될 Text List Adaptor (DialogAdapter 상속 처리)
@@ -55,12 +54,12 @@ internal class CommonDialog(context: Context,
                             val itemClickedListener: OnItemClickedListener? = null,
                             val isEditText: Boolean = false,
                             val confirmListener: OnConfirmClickedListener? = null,
-                            val isButtonLayout: Boolean = true,
+                            val isButtonLayout: Boolean,
                             val primaryLabel: CharSequence? = null,
                             val primaryListener: DialogInterface.OnDismissListener? = null,
                             val secondaryLabel: CharSequence? = null,
                             val secondaryListener: DialogInterface.OnDismissListener? = null,
-                            val isBackKey: Boolean = false) : Dialog(context) {
+                            val isBackKey: Boolean) : Dialog(context) {
 
     // 바인딩
     private lateinit var binding: DialogBinding
@@ -195,15 +194,39 @@ internal class CommonDialog(context: Context,
                 binding.primary.setTypeface(null, dialogConfig.primaryButtonTextTypeface)
                 binding.primary.letterSpacing = dialogConfig.primaryButtonTextLetterSpacing
                 binding.primary.setBgDrawable(dialogConfig.primaryButtonSelector)
-                primaryListener?.let { listener ->
+
+                // 1개의 버튼이고 리스트 형식인 경우, listener 처리를 구분한다.
+                if (secondaryLabel == null && adapter != null && adapter is DialogAdapter) {
                     binding.primary.setOnClickListener {
-                        setOnDismissListener(listener)
+                        itemClickedListener?.onClicked(it, -1, (adapter as DialogAdapter).getSelectedItemPositions())
                         dismiss()
+                    }
+                }
+                else if (isEditText) {
+                    binding.primary.setOnClickListener {
+                        onClick()
+                    }
+                }
+                else {
+                    primaryListener?.let { listener ->
+                        binding.primary.setOnClickListener {
+                            setOnDismissListener(listener)
+                            dismiss()
+                        }
                     }
                 }
             }
 
             // 버튼 간의 divider
+            dialogConfig.buttonVerticalLineColor?.let {
+                val buttonVerticalDivider = binding.buttonVerticalDivider
+                val buttonVerticalDividerParam = buttonVerticalDivider.layoutParams
+                buttonVerticalDividerParam.width = dialogConfig.buttonVerticalLineWidth ?: 0
+                buttonVerticalDivider.setBackgroundColor(context.color(it))
+                buttonVerticalDivider.topMargin = dialogConfig.buttonVerticalLinePadding ?: 0
+                buttonVerticalDivider.bottomMargin = dialogConfig.buttonVerticalLinePadding ?: 0
+                buttonVerticalDivider.visible()
+            }
 
             // 우측 버튼
             secondaryLabel?.let { label ->
@@ -213,10 +236,25 @@ internal class CommonDialog(context: Context,
                 binding.secondary.setTypeface(null, dialogConfig.secondaryButtonTextTypeface)
                 binding.secondary.letterSpacing = dialogConfig.secondaryButtonTextLetterSpacing
                 binding.secondary.setBgDrawable(dialogConfig.secondaryButtonSelector)
-                secondaryListener?.let { listener ->
+
+                // 리스트 형식인 경우, listener 처리를 구분한다.
+                if (adapter != null && adapter is DialogAdapter) {
                     binding.secondary.setOnClickListener {
-                        setOnDismissListener(listener)
+                        itemClickedListener?.onClicked(it, -1, (adapter as DialogAdapter).getSelectedItemPositions())
                         dismiss()
+                    }
+                }
+                else if (isEditText) {
+                    binding.secondary.setOnClickListener {
+                        onClick()
+                    }
+                }
+                else {
+                    secondaryListener?.let { listener ->
+                        binding.secondary.setOnClickListener {
+                            setOnDismissListener(listener)
+                            dismiss()
+                        }
                     }
                 }
             }

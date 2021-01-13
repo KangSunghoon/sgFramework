@@ -3,6 +3,7 @@
     <string name="cancel">취소</string>
     <string name="confirm">확인</string>
     <string name="loading">로딩중...</string>
+    <string name="finish">종료</string>
     <string name="toast_description">Toast message</string>
 
     <!-- dialog 관련 -->

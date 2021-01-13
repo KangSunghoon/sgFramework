@@ -12,6 +12,7 @@ import com.ksfams.sgframework.ui.dialog.LoadingDialog
 import com.ksfams.sgframework.ui.dialog.listener.OnConfirmClickedListener
 import com.ksfams.sgframework.ui.dialog.listener.OnItemClickedListener
 import com.ksfams.sgframework.utils.LogUtil
+import com.ksfams.sgframework.utils.finishAllActivity
 
 /**
  *
@@ -95,6 +96,9 @@ object DialogManager {
         loadingDialog?.show()
     }
 
+    /**
+     * 다이얼로그 닫기
+     */
     fun hideDialog() {
         dialog?.let {
             if (it.isShowing) it.dismiss()
@@ -102,25 +106,259 @@ object DialogManager {
         }
     }
 
+    /**
+     * 버튼 없는
+     * 일반 다이얼로그 보기
+     * BackKey 사용시, 다이얼로그 그냥 닫힘.
+     *
+     * @param title
+     * @param message
+     * @param isBackKey back-key 종료 처리 여부
+     */
     fun showNotButtonDialog(title: CharSequence? = null,
                             message: CharSequence,
                             isBackKey: Boolean = false) {
         hideAllDialog()
         if (mParentActivity.isFinishing) return
-//
-//        dialog = CommonDialog(context = mContext,
-//                title = title, message = message, )
-//
-//        val message: CharSequence? = null,
-//        val adapter: RecyclerView.Adapter<*>? = null,
-//        val itemClickedListener: OnItemClickedListener? = null,
-//        val isEditText: Boolean = false,
-//        val confirmListener: OnConfirmClickedListener? = null,
-//        val isButtonLayout: Boolean = true,
-//        val primaryLabel: CharSequence? = null,
-//        val primaryListener: DialogInterface.OnDismissListener? = null,
-//        val secondaryLabel: CharSequence? = null,
-//        val secondaryListener: DialogInterface.OnDismissListener? = null,
-//        val isBackKey: Boolean = false
+
+        dialog = CommonDialog(context = mContext,
+                title = title, message = message,
+                isButtonLayout = false, isBackKey = isBackKey)
+        dialog?.show()
+    }
+
+    /**
+     * 버튼 없는
+     * 리스트형 다이얼로그
+     * BackKey 사용시, 다이얼로그 그냥 닫힘.
+     *
+     * @param title
+     * @param adapter
+     * @param itemClickedListener itemClickedListener 처리 시, dialog 닫기 처리도 추가해 주어야 함.
+     * @param isBackKey
+     */
+    fun showNotButtonListDialog(title: CharSequence? = null,
+                                adapter: RecyclerView.Adapter<*>,
+                                itemClickedListener: OnItemClickedListener,
+                                isBackKey: Boolean = false) {
+        hideAllDialog()
+        if (mParentActivity.isFinishing) return
+
+        dialog = CommonDialog(context = mContext,
+                title = title, adapter = adapter, itemClickedListener = itemClickedListener,
+                isButtonLayout = false, isBackKey = isBackKey)
+        dialog?.show()
+    }
+
+    /**
+     * 1개의 버튼을 가지는
+     * 일반 다이얼로그 보기
+     * BackKey 사용시, 다이얼로그 그냥 닫힘.
+     *
+     * @param title
+     * @param message
+     * @param buttonLabel
+     * @param buttonListener
+     * @param isBackKey
+     */
+    fun showOneButtonDialog(title: CharSequence? = null,
+                            message: CharSequence,
+                            buttonLabel: CharSequence,
+                            buttonListener: DialogInterface.OnDismissListener,
+                            isBackKey: Boolean = false) {
+        hideAllDialog()
+        if (mParentActivity.isFinishing) return
+
+        dialog = CommonDialog(context = mContext,
+                title = title, message = message,
+                isButtonLayout = true, primaryLabel = buttonLabel, primaryListener = buttonListener,
+                isBackKey = isBackKey)
+        dialog?.show()
+    }
+
+    /**
+     * 1개의 버튼을 가지고
+     * 앱을 종료 처리하는 dialog
+     *
+     * @param title
+     * @param message
+     * @param buttonLabel
+     */
+    fun showErrorAndFinishAffinity(title: CharSequence? = null,
+                                   message: CharSequence,
+                                   buttonLabel: CharSequence = mContext.string(R.string.finish)) {
+        showOneButtonDialog(title = title, message = message,
+                buttonLabel = buttonLabel,
+                buttonListener = {
+                    finishAllActivity(mParentActivity)
+                })
+    }
+
+    /**
+     * 확인 버튼을 가지고
+     * Activity 종료 처리하는 dialog
+     *
+     * @param title
+     * @param message
+     * @param buttonLabel
+     */
+    fun showErrorAndFinish(title: CharSequence? = null,
+                           message: CharSequence,
+                           buttonLabel: CharSequence = mContext.string(R.string.finish)) {
+        showOneButtonDialog(title = title, message = message,
+                buttonLabel = buttonLabel,
+                buttonListener = {
+                    mParentActivity.finish()
+                })
+    }
+
+    /**
+     * 1개의 버튼, 입력폼을 가지는
+     * 다이얼로그 보기
+     * BackKey 사용시, 다이얼로그 그냥 닫힘.
+     *
+     * @param title
+     * @param message
+     * @param editTextListener 입력폼의 값을 전달
+     * @param buttonLabel
+     * @param isBackKey
+     */
+    fun showOneButtonInputDialog(title: CharSequence,
+                                 message: CharSequence? = null,
+                                 editTextListener: OnConfirmClickedListener,
+                                 buttonLabel: CharSequence,
+                                 isBackKey: Boolean = false) {
+        hideAllDialog()
+        if (mParentActivity.isFinishing) return
+
+        dialog = CommonDialog(context = mContext,
+                title = title, message = message,
+                isEditText = true,
+                confirmListener = editTextListener,
+                isButtonLayout = true, primaryLabel = buttonLabel,
+                isBackKey = isBackKey)
+        dialog?.show()
+    }
+
+    /**
+     * 1개의 버튼을 가지는
+     * 리스트형 다이얼로그
+     * BackKey 사용시, 다이얼로그 그냥 닫힘.
+     *
+     * @param title
+     * @param adapter
+     * @param buttonClickedListener 리스트 선택 항목 리턴.
+     * @param buttonLabel
+     * @param isBackKey
+     */
+    fun showOneButtonListDialog(title: CharSequence? = null,
+                                adapter: RecyclerView.Adapter<*>,
+                                buttonClickedListener: OnItemClickedListener,
+                                buttonLabel: CharSequence,
+                                isBackKey: Boolean = false) {
+        hideAllDialog()
+        if (mParentActivity.isFinishing) return
+
+        dialog = CommonDialog(context = mContext,
+                title = title, adapter = adapter, itemClickedListener = buttonClickedListener,
+                isButtonLayout = true, primaryLabel = buttonLabel, isBackKey = isBackKey)
+        dialog?.show()
+    }
+
+    /**
+     * 2개의 버튼을 가지는 다이얼로그 보기
+     * 2개의 버튼에 대한 레이블도 변경함.
+     * BackKey 사용시, 다이얼로그 그냥 닫힘.
+     *
+     * @param title
+     * @param message
+     * @param primaryLabel 좌측버튼
+     * @param primaryListener
+     * @param secondaryLabel 우측버튼
+     * @param secondaryListener
+     * @param isBackKey
+     */
+    fun showTwoButtonDialog(title: CharSequence? = null,
+                            message: CharSequence,
+                            primaryLabel: CharSequence,
+                            primaryListener: DialogInterface.OnDismissListener? = null,
+                            secondaryLabel: CharSequence,
+                            secondaryListener: DialogInterface.OnDismissListener,
+                            isBackKey: Boolean = false) {
+        hideAllDialog()
+        if (mParentActivity.isFinishing) return
+
+        dialog = CommonDialog(context = mContext,
+                title = title, message = message,
+                isButtonLayout = true,
+                primaryLabel = primaryLabel, primaryListener = primaryListener,
+                secondaryLabel = secondaryLabel, secondaryListener = secondaryListener,
+                isBackKey = isBackKey)
+        dialog?.show()
+    }
+
+    /**
+     * 2개의 버튼, 입력폼을 가지는
+     * 2개의 버튼에 대한 레이블도 변경함.
+     * BackKey 사용시, 다이얼로그 그냥 닫힘.
+     *
+     * @param title
+     * @param message
+     * @param primaryLabel 좌측버튼
+     * @param primaryListener
+     * @param secondaryLabel 우측버튼
+     * @param secondaryListener 입력폼의 값을 전달함.
+     * @param isBackKey
+     */
+    fun showTwoButtonInputDialog(title: CharSequence,
+                                 message: CharSequence? = null,
+                                 primaryLabel: CharSequence,
+                                 primaryListener: DialogInterface.OnDismissListener? = null,
+                                 secondaryLabel: CharSequence,
+                                 secondaryListener: OnConfirmClickedListener,
+                                 isBackKey: Boolean = false) {
+        hideAllDialog()
+        if (mParentActivity.isFinishing) return
+
+        dialog = CommonDialog(context = mContext,
+                title = title, message = message,
+                isEditText = true, confirmListener = secondaryListener,
+                isButtonLayout = true,
+                primaryLabel = primaryLabel, primaryListener = primaryListener,
+                secondaryLabel = secondaryLabel,
+                isBackKey = isBackKey)
+        dialog?.show()
+    }
+
+    /**
+     * 2개의 버튼 리스트형 다이얼로그 보기
+     * 2개의 버튼에 대한 레이블도 변경함.
+     * BackKey 사용시, 다이얼로그 그냥 닫힘.
+     *
+     * @param title
+     * @param adapter
+     * @param primaryLabel 좌측버튼
+     * @param primaryListener
+     * @param secondaryLabel 우측버튼
+     * @param secondaryListener 리스트 선택 항목 리턴.
+     * @param isBackKey
+     */
+    fun showTwoButtonListDialog(title: CharSequence? = null,
+                                adapter: RecyclerView.Adapter<*>,
+                                primaryLabel: CharSequence,
+                                primaryListener: DialogInterface.OnDismissListener? = null,
+                                secondaryLabel: CharSequence,
+                                secondaryListener: OnItemClickedListener,
+                                isBackKey: Boolean = false) {
+        hideAllDialog()
+        if (mParentActivity.isFinishing) return
+
+        dialog = CommonDialog(context = mContext,
+                title = title, adapter = adapter, itemClickedListener = secondaryListener,
+                isButtonLayout = true,
+                primaryLabel = primaryLabel, primaryListener = primaryListener,
+                secondaryLabel = secondaryLabel,
+                isBackKey = isBackKey)
+        dialog?.show()
     }
 }
