@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import androidx.recyclerview.widget.RecyclerView
 import com.ksfams.sgframework.R
 import com.ksfams.sgframework.extensions.string
+import com.ksfams.sgframework.modules.holder.SingletonHolder
 import com.ksfams.sgframework.modules.reference.ApplicationReference
 import com.ksfams.sgframework.ui.dialog.CommonDialog
 import com.ksfams.sgframework.ui.dialog.LoadingDialog
@@ -28,7 +29,10 @@ import com.ksfams.sgframework.utils.finishAllActivity
  * 강성훈      12/18/20     신규 개발.
  */
 
-object DialogManager {
+class DialogManager(context: Context) {
+
+    /** 싱글톤 정의 */
+    companion object : SingletonHolder<DialogManager, Context>(::DialogManager)
 
     /** 로딩 프로그래스 바 다이얼로그  */
     private var loadingDialog: LoadingDialog? = null
@@ -36,13 +40,8 @@ object DialogManager {
     /** 다이얼로그 */
     private var dialog: CommonDialog? = null
 
-    private val mContext: Context
-    private val mParentActivity: Activity
-
-    init {
-        mContext = ApplicationReference.getApp()
-        mParentActivity = ApplicationReference.getApp() as Activity
-    }
+    private val mContext: Context = context
+    private val mParentActivity: Activity = context as Activity
 
 
     /**
