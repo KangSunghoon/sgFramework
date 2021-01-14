@@ -24,8 +24,6 @@ import com.ksfams.sgframework.utils.finishAllActivity
 abstract class AbstractBaseActivity : AppCompatActivity() {
 
     protected lateinit var mContext: Context
-    /** 다이얼로그 매니져  */
-    protected lateinit var mDialogManager: DialogManager
 
     protected lateinit var mPreference: Preference
 
@@ -34,7 +32,6 @@ abstract class AbstractBaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mContext = this
-        mDialogManager = DialogManager(this)
         mPreference = Preference.getInstance(this)
     }
 
@@ -42,7 +39,7 @@ abstract class AbstractBaseActivity : AppCompatActivity() {
         super.onDestroy()
 
         // 열려있는 모든 Dialog를 닫는다. (leak window 발생)
-        mDialogManager.hideAllDialog()
+        DialogManager.hideAllDialog()
     }
 
 

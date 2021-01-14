@@ -26,9 +26,6 @@ abstract class AbstractBaseFragment : Fragment() {
     protected lateinit var mContext: Context
     protected var mParentActivity: Activity? = null
 
-    /** 다이얼로그 매니져  */
-    protected lateinit var mDialogManager: DialogManager
-
     protected lateinit var mPreference: Preference
 
     override fun onAttach(context: Context) {
@@ -36,7 +33,6 @@ abstract class AbstractBaseFragment : Fragment() {
 
         mContext = context
         mParentActivity = activity
-        mDialogManager = DialogManager(context)
         mPreference = Preference.getInstance(context)
     }
 
@@ -44,7 +40,7 @@ abstract class AbstractBaseFragment : Fragment() {
         super.onDestroy()
 
         // 열려있는 모든 Dialog를 닫는다. (leak window 발생)
-        mDialogManager.hideAllDialog()
+        DialogManager.hideAllDialog()
     }
 
 

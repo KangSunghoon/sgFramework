@@ -61,11 +61,13 @@ fun Activity.setStatusbarVisibility(isVisible: Boolean) {
  */
 fun Window.setStatusbarVisibility(isVisible: Boolean) {
     if (isVisible) {
+        @Suppress("DEPRECATION")
         clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         showColorView()
         showAlphaView()
         addMarginTopEqualHeight()
     } else {
+        @Suppress("DEPRECATION")
         addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         hideColorView()
         hideAlphaView()
@@ -81,6 +83,7 @@ fun Window.setStatusbarVisibility(isVisible: Boolean) {
  */
 fun Activity.isStatusbarVisible(): Boolean {
     val flags = window.attributes.flags
+    @Suppress("DEPRECATION")
     return flags and WindowManager.LayoutParams.FLAG_FULLSCREEN == 0
 }
 
@@ -103,13 +106,17 @@ fun Activity.setLightMode(isLightMode: Boolean) {
  */
 fun Window.setLightMode(isLightMode: Boolean) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        @Suppress("DEPRECATION")
         var vis = decorView.systemUiVisibility
         vis = if (isLightMode) {
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            @Suppress("DEPRECATION")
             vis or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         } else {
+            @Suppress("DEPRECATION")
             vis and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         }
+        @Suppress("DEPRECATION")
         decorView.systemUiVisibility = vis
     }
 }
@@ -350,7 +357,9 @@ fun Activity.setAlpha4Drawer(drawer: DrawerLayout,
  */
 @RequiresApi(Build.VERSION_CODES.M)
 fun Activity.setStatusBarTheme(isDark: Boolean) {
+    @Suppress("DEPRECATION")
     val lFlags = window.decorView.systemUiVisibility
+    @Suppress("DEPRECATION")
     window.decorView.systemUiVisibility = if (isDark) {
         lFlags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
     } else {
@@ -625,13 +634,16 @@ fun Activity.setNavBarVisibility(isVisible: Boolean) {
  * @param isVisible True to set navigation bar visible, false otherwise.
  */
 fun Window.setNavBarVisibility(isVisible: Boolean) {
+    @Suppress("DEPRECATION")
     val uiOptions = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
             or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
     val decorView = decorView
     if (isVisible) {
+        @Suppress("DEPRECATION")
         decorView.systemUiVisibility = decorView.systemUiVisibility and uiOptions.inv()
     } else {
+        @Suppress("DEPRECATION")
         decorView.systemUiVisibility = decorView.systemUiVisibility or uiOptions
     }
 }
@@ -655,7 +667,9 @@ fun Activity.isNavBarVisible(): Boolean {
  */
 fun Window.isNavBarVisible(): Boolean {
     val decorView = decorView
+    @Suppress("DEPRECATION")
     val visibility = decorView.systemUiVisibility
+    @Suppress("DEPRECATION")
     return visibility and View.SYSTEM_UI_FLAG_HIDE_NAVIGATION == 0
 }
 
