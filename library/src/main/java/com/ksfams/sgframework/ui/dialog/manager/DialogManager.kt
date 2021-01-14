@@ -41,7 +41,7 @@ object DialogManager {
 
     init {
         mContext = ApplicationReference.getApp()
-        mParentActivity = mContext as Activity
+        mParentActivity = ApplicationReference.getApp() as Activity
     }
 
 
