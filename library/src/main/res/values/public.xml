@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public name="btn_delete" type="drawable" />
+    <public name="btn_primary_selector" type="drawable" />
+    <public name="btn_secondary_selector" type="drawable" />
+    <public name="check_list" type="drawable" />
+    <public name="input_basic_selector" type="drawable" />
+    <public name="list_selector" type="drawable" />
+    <public name="list_selector" type="drawable" />
+
+    <public name="RGB_00000000" type="color" />
+    <public name="RGB_80FFFFFF" type="color" />
+    <public name="RGB_AB1C1C1E" type="color" />
+    <public name="RGB_FF000000" type="color" />
+    <public name="RGB_FFFFFFFF" type="color" />
+    <public name="RGB_FFFFA900" type="color" />
+    <public name="RGB_FFB1B1B1" type="color" />
+    <public name="RGB_FFCCCCCC" type="color" />
+    <public name="RGB_FFD50000" type="color" />
+    <public name="RGB_FFD6D6D6" type="color" />
+    <public name="RGB_FFD9D9D9" type="color" />
+    <public name="RGB_FFE8E8E8" type="color" />
+    <public name="RGB_FFF5F5F5" type="color" />
+    <public name="RGB_FF00BCD4" type="color" />
+    <public name="RGB_FF00838F" type="color" />
+    <public name="RGB_FF1C1C1E" type="color" />
+    <public name="RGB_FF232323" type="color" />
+    <public name="RGB_FF329AFF" type="color" />
+    <public name="RGB_FF353A3E" type="color" />
+    <public name="RGB_FF388E3C" type="color" />
+    <public name="RGB_FF3F51B5" type="color" />
+    <public name="RGB_FF666666" type="color" />
+    <public name="RGB_FF757575" type="color" />
+    <public name="RGB_FF888888" type="color" />
+    <public name="RGB_FF999999" type="color" />
+    <public name="RGB_FF09D36E" type="color" />
+    <public name="RGB_6609D36E" type="color" />
+</resources>
