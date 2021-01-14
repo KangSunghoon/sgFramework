@@ -195,19 +195,26 @@ internal class CommonDialog(context: Context,
                 binding.primary.letterSpacing = dialogConfig.primaryButtonTextLetterSpacing
                 binding.primary.setBgDrawable(dialogConfig.primaryButtonSelector)
 
-                // 1개의 버튼이고 리스트 형식인 경우, listener 처리를 구분한다.
-                if (secondaryLabel == null && adapter != null && adapter is DialogAdapter) {
-                    binding.primary.setOnClickListener {
-                        itemClickedListener?.onClicked(it, -1, (adapter as DialogAdapter).getSelectedItemPositions())
-                        dismiss()
+                // 1개의 버튼이고 리스트/입력폼 형식인 경우, listener 처리를 구분한다.
+                if (secondaryLabel == null) {
+                    if (isEditText) {
+                        binding.primary.setOnClickListener {
+                            onClick()
+                        }
+                    } else if (adapter != null && adapter is DialogAdapter) {
+                        binding.primary.setOnClickListener {
+                            itemClickedListener?.onClicked(it, -1, (adapter as DialogAdapter).getSelectedItemPositions())
+                            dismiss()
+                        }
+                    } else {
+                        primaryListener?.let { listener ->
+                            binding.primary.setOnClickListener {
+                                setOnDismissListener(listener)
+                                dismiss()
+                            }
+                        }
                     }
-                }
-                else if (isEditText) {
-                    binding.primary.setOnClickListener {
-                        onClick()
-                    }
-                }
-                else {
+                } else {
                     primaryListener?.let { listener ->
                         binding.primary.setOnClickListener {
                             setOnDismissListener(listener)
@@ -237,7 +244,7 @@ internal class CommonDialog(context: Context,
                 binding.secondary.letterSpacing = dialogConfig.secondaryButtonTextLetterSpacing
                 binding.secondary.setBgDrawable(dialogConfig.secondaryButtonSelector)
 
-                // 리스트 형식인 경우, listener 처리를 구분한다.
+                // 리스트/입력폼 형식인 경우, listener 처리를 구분한다.
                 if (adapter != null && adapter is DialogAdapter) {
                     binding.secondary.setOnClickListener {
                         itemClickedListener?.onClicked(it, -1, (adapter as DialogAdapter).getSelectedItemPositions())
