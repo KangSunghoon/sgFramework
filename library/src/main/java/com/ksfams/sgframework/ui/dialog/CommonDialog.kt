@@ -177,6 +177,7 @@ internal class CommonDialog(context: Context,
             val buttonLayoutParam = buttonLayout.layoutParams
             buttonLayoutParam.height = context.dpToPixel(dialogConfig.buttonHeight).toInt()
             buttonLayout.topMargin = context.dpToPixel(dialogConfig.buttonTopSpacing).toInt()
+            buttonLayout.visible()
 
             // 버튼 레이아웃 구분선
             if (dialogConfig.buttonLineHeight != null && dialogConfig.buttonLineColor != null) {
@@ -244,6 +245,7 @@ internal class CommonDialog(context: Context,
                 binding.secondary.setTypeface(null, dialogConfig.secondaryButtonTextTypeface)
                 binding.secondary.letterSpacing = context.dpToPixel(dialogConfig.secondaryButtonTextLetterSpacing)
                 binding.secondary.setBgDrawable(dialogConfig.secondaryButtonSelector)
+                binding.secondary.visible()
 
                 // 리스트/입력폼 형식인 경우, listener 처리를 구분한다.
                 if (adapter != null && adapter is DialogAdapter) {

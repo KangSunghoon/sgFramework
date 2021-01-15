@@ -154,7 +154,8 @@
                 android:text="@android:string/yes"
                 android:textColor="@color/RGB_FFFFFFFF"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
