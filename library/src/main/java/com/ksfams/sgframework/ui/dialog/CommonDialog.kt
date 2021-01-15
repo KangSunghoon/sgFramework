@@ -95,10 +95,11 @@ internal class CommonDialog(context: Context,
             binding.title.setTypeface(null, dialogConfig.titleTypeface)
             binding.title.letterSpacing = context.dpToPixel(dialogConfig.titleLetterSpacing)
             binding.title.gravity = dialogConfig.textAlignment
-            binding.title.topMargin = context.dpToPixel(dialogConfig.titleTopSpacing).toInt()
             binding.title.leftMargin = context.dpToPixel(dialogConfig.titleHorizontalSpacing).toInt()
             binding.title.rightMargin = context.dpToPixel(dialogConfig.titleHorizontalSpacing).toInt()
-            binding.title.bottomMargin = context.dpToPixel(dialogConfig.titleBottomSpacing).toInt()
+
+            binding.titleBackground.topMargin = context.dpToPixel(dialogConfig.titleTopSpacing).toInt()
+            binding.titleBackground.bottomMargin = context.dpToPixel(dialogConfig.titleBottomSpacing).toInt()
             binding.titleBackground.setBackgroundColor(context.color(dialogConfig.titleBackgroundColor))
             binding.titleBackground.visible()
 
