@@ -125,7 +125,13 @@ internal class CommonDialog(context: Context,
             binding.message.letterSpacing = context.dpToPixel(dialogConfig.messageLetterSpacing)
             binding.message.maxLines = dialogConfig.messageLineLimit
             binding.message.gravity = dialogConfig.textAlignment
-            binding.message.topMargin = context.dpToPixel(dialogConfig.messageTopSpacing).toInt()
+
+            if (title == null) {
+                binding.message.topMargin = context.dpToPixel(dialogConfig.titleTopSpacing).toInt()
+            } else {
+                binding.message.topMargin = context.dpToPixel(dialogConfig.messageTopSpacing).toInt()
+            }
+
             binding.message.leftMargin = context.dpToPixel(dialogConfig.messageHorizontalSpacing).toInt()
             binding.message.rightMargin = context.dpToPixel(dialogConfig.messageHorizontalSpacing).toInt()
             binding.message.visible()

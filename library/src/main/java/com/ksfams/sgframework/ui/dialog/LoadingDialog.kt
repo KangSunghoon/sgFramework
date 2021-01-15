@@ -50,9 +50,6 @@ internal class LoadingDialog(context: Context,
         binding = DialogLoadingBinding.inflate(LayoutInflater.from(context))
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        window!!.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         window!!.setDimAmount(0.2f)
 
