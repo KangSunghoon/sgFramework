@@ -78,6 +78,7 @@ object DialogBuilder {
      * @property buttonTopSpacing: 버튼 레이아웃과 message text view 간의 top padding. Default is `15dp`
      * @property buttonLineColor: optional body와 button layout 구분 라인 색상
      * @property buttonLineHeight: optional body와 button layout 구분 라인 크기
+     * @property singleButtonSelector: 버튼이 1개인 경우, background Selector resource
      * @property primaryButtonSelector: primary Button background Selector resource
      * @property primaryButtonTextSize: primary Button text size. Default is `14dp`
      * @property primaryButtonTextColor: primary Button text Color resource
@@ -119,6 +120,7 @@ object DialogBuilder {
                                       val buttonTopSpacing: Int = 14,
                                       @ColorRes val buttonLineColor: Int? = null,
                                       val buttonLineHeight: Int? = null,
+                                      @DrawableRes val singleButtonSelector: Int = R.drawable.btn_primary_single_selector,
                                       @DrawableRes val primaryButtonSelector: Int = R.drawable.btn_primary_selector,
                                       val primaryButtonTextSize: Int = 15,
                                       @ColorRes val primaryButtonTextColor: Int = R.color.RGB_FFFFFFFF,
@@ -143,7 +145,7 @@ object DialogBuilder {
                     titleBackgroundColor, titleTopSpacing, titleBottomSpacing, titleHorizontalSpacing, titleTextSize, titleColor, titleTypeface, titleLetterSpacing, titleLineColor, titleLineHeight, titleLineBottomPadding, titleLineHorizontalPadding,
                     messageTopSpacing, messageHorizontalSpacing, messageLineLimit, messageTextSize, messageColor, messageTypeface, messageLetterSpacing,
                     buttonHeight, buttonTopSpacing, buttonLineColor, buttonLineHeight,
-                    primaryButtonSelector, primaryButtonTextSize, primaryButtonTextColor, primaryButtonTextTypeface, primaryButtonTextLetterSpacing,
+                    singleButtonSelector, primaryButtonSelector, primaryButtonTextSize, primaryButtonTextColor, primaryButtonTextTypeface, primaryButtonTextLetterSpacing,
                     buttonVerticalLineColor, buttonVerticalLineWidth, buttonVerticalLinePadding,
                     secondaryButtonSelector, secondaryButtonTextSize, secondaryButtonTextColor, secondaryButtonTextTypeface, secondaryButtonTextLetterSpacing)
         }
@@ -176,6 +178,7 @@ object DialogBuilder {
                     + LINE_SEP + "buttonTopSpacing: " + buttonTopSpacing.toString()
                     + LINE_SEP + "buttonLineColor: " + buttonLineColor.toString()
                     + LINE_SEP + "buttonLineHeight: " + buttonLineHeight.toString()
+                    + LINE_SEP + "singleButtonSelector: " + singleButtonSelector.toString()
                     + LINE_SEP + "primaryButtonSelector: " + primaryButtonSelector.toString()
                     + LINE_SEP + "primaryButtonTextSize: " + primaryButtonTextSize.toString()
                     + LINE_SEP + "primaryButtonTextColor: " + primaryButtonTextColor.toString()
@@ -201,7 +204,7 @@ object DialogBuilder {
      * @property textAlignment: text 정렬. Default is `Gravity.CENTER`
      * @property titleBackgroundColor: title 영역 배경 색상. Default is `R.color.RGB_FFFFFFFF`
      * @property titleTopSpacing: title text top padding. title 이 없을 경우, message top padding 값으로 사용됨. Default is `13dp`
-     * @property titleBottomSpacing: title text bottom padding. Default is `18dp`
+     * @property titleBottomSpacing: title text bottom padding. Default is `13dp`
      * @property titleHorizontalSpacing: title text horizontal padding. Default is `25dp`
      * @property titleTextSize: title text size. Default is `15dp`
      * @property titleColor: title text color resource. Default is `R.color.RGB_FF232323`
@@ -209,7 +212,7 @@ object DialogBuilder {
      * @property titleLetterSpacing: optional title text 글자 간격
      * @property titleLineColor: optional title 구분 라인 색상
      * @property titleLineHeight: optional title 구분 라인 크기
-     * @property titleLineBottomPadding: optional title 구분 라인과 하단 레이아웃 간의 padding 크기. Default is `5dp`
+     * @property titleLineBottomPadding: optional title 구분 라인과 하단 레이아웃 간의 padding 크기. Default is `14dp`
      * @property titleLineHorizontalPadding: optional title 구분 라인의 horizontal padding 크기
      * @property messageTopSpacing: message top padding. title 이 없을 경우, titleTopSpacing 값으로 사용됨. . Default is `0dp`
      * @property messageHorizontalSpacing: message horizontal padding. Default is `25dp`
@@ -222,6 +225,7 @@ object DialogBuilder {
      * @property buttonTopSpacing: 버튼 레이아웃과 message text view 간의 top padding. Default is `15dp`
      * @property buttonLineColor: optional body와 button layout 구분 라인 색상
      * @property buttonLineHeight: optional body와 button layout 구분 라인 크기
+     * @property singleButtonSelector: 버튼이 1개인 경우, background Selector resource
      * @property primaryButtonSelector: primary Button background Selector resource
      * @property primaryButtonTextSize: primary Button text size. Default is `14dp`
      * @property primaryButtonTextColor: primary Button text Color resource
@@ -242,7 +246,7 @@ object DialogBuilder {
                              var textAlignment: Int = Gravity.CENTER,
                              @ColorRes var titleBackgroundColor: Int = R.color.RGB_FFFFFFFF,
                              var titleTopSpacing: Int = 13,
-                             var titleBottomSpacing: Int = 18,
+                             var titleBottomSpacing: Int = 13,
                              var titleHorizontalSpacing: Int = 25,
                              var titleTextSize: Int = 15,
                              @ColorRes var titleColor: Int = R.color.RGB_FF232323,
@@ -250,7 +254,7 @@ object DialogBuilder {
                              var titleLetterSpacing: Float = 0f,
                              @ColorRes var titleLineColor: Int? = null,
                              var titleLineHeight: Int? = null,
-                             var titleLineBottomPadding: Int = 5,
+                             var titleLineBottomPadding: Int = 14,
                              var titleLineHorizontalPadding: Int? = null,
                              var messageTopSpacing: Int = 0,
                              var messageHorizontalSpacing: Int = 25,
@@ -263,6 +267,7 @@ object DialogBuilder {
                              var buttonTopSpacing: Int = 14,
                              @ColorRes var buttonLineColor: Int? = null,
                              var buttonLineHeight: Int? = null,
+                             @DrawableRes var singleButtonSelector: Int = R.drawable.btn_primary_single_selector,
                              @DrawableRes var primaryButtonSelector: Int = R.drawable.btn_primary_selector,
                              var primaryButtonTextSize: Int = 15,
                              @ColorRes var primaryButtonTextColor: Int = R.color.RGB_FFFFFFFF,
@@ -304,6 +309,7 @@ object DialogBuilder {
         fun setButtonTopSpacing(buttonTopSpacing: Int) = apply { this.buttonTopSpacing = buttonTopSpacing }
         fun setButtonLineColor(buttonLineColor: Int) = apply { this.buttonLineColor = buttonLineColor }
         fun setButtonLineHeight(buttonLineHeight: Int) = apply { this.buttonLineHeight = buttonLineHeight }
+        fun setSingleButtonSelector(singleButtonSelector: Int) = apply { this.singleButtonSelector = singleButtonSelector }
         fun setPrimaryButtonSelector(primaryButtonSelector: Int) = apply { this.primaryButtonSelector = primaryButtonSelector }
         fun setPrimaryButtonTextSize(primaryButtonTextSize: Int) = apply { this.primaryButtonTextSize = primaryButtonTextSize }
         fun setPrimaryButtonTextColor(primaryButtonTextColor: Int) = apply { this.primaryButtonTextColor = primaryButtonTextColor }
@@ -322,7 +328,7 @@ object DialogBuilder {
                 titleBackgroundColor, titleTopSpacing, titleBottomSpacing, titleHorizontalSpacing, titleTextSize, titleColor, titleTypeface, titleLetterSpacing, titleLineColor, titleLineHeight, titleLineBottomPadding, titleLineHorizontalPadding,
                 messageTopSpacing, messageHorizontalSpacing, messageLineLimit, messageTextSize, messageColor, messageTypeface, messageLetterSpacing,
                 buttonHeight, buttonTopSpacing, buttonLineColor, buttonLineHeight,
-                primaryButtonSelector, primaryButtonTextSize, primaryButtonTextColor, primaryButtonTextTypeface, primaryButtonTextLetterSpacing,
+                singleButtonSelector, primaryButtonSelector, primaryButtonTextSize, primaryButtonTextColor, primaryButtonTextTypeface, primaryButtonTextLetterSpacing,
                 buttonVerticalLineColor, buttonVerticalLineWidth, buttonVerticalLinePadding,
                 secondaryButtonSelector, secondaryButtonTextSize, secondaryButtonTextColor, secondaryButtonTextTypeface, secondaryButtonTextLetterSpacing)
     }

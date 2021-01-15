@@ -197,10 +197,11 @@ internal class CommonDialog(context: Context,
                 binding.primary.setTextColor(context.color(dialogConfig.primaryButtonTextColor))
                 binding.primary.setTypeface(null, dialogConfig.primaryButtonTextTypeface)
                 binding.primary.letterSpacing = context.dpToPixel(dialogConfig.primaryButtonTextLetterSpacing)
-                binding.primary.setBgDrawable(dialogConfig.primaryButtonSelector)
 
                 // 1개의 버튼이고 리스트/입력폼 형식인 경우, listener 처리를 구분한다.
                 if (secondaryLabel == null) {
+                    binding.primary.setBgDrawable(dialogConfig.singleButtonSelector)
+
                     if (isEditText) {
                         binding.primary.setOnClickListener {
                             onClick()
@@ -219,6 +220,8 @@ internal class CommonDialog(context: Context,
                         }
                     }
                 } else {
+                    binding.primary.setBgDrawable(dialogConfig.primaryButtonSelector)
+
                     primaryListener?.let { listener ->
                         binding.primary.setOnClickListener {
                             setOnDismissListener(listener)
