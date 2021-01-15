@@ -103,7 +103,6 @@ inline val Context.navigationBarHeight: Int
         return height
     }
 
-
 /**
  * dp --> pixel 변환
  *
@@ -111,9 +110,9 @@ inline val Context.navigationBarHeight: Int
  * @param dp Int
  * @return Int
  */
-fun Context.dpToPixel(dp: Int): Int {
+fun Context.dpToPixel(dp: Int): Float {
     return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-            dp.toFloat(), resources.displayMetrics).toInt()
+            dp.toFloat(), resources.displayMetrics)
 }
 
 /**
@@ -123,9 +122,9 @@ fun Context.dpToPixel(dp: Int): Int {
  * @param dp Float
  * @return Int
  */
-fun Context.dpToPixel(dp: Float): Int {
+fun Context.dpToPixel(dp: Float): Float {
     return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-            dp, resources.displayMetrics).toInt()
+            dp, resources.displayMetrics)
 }
 
 /**

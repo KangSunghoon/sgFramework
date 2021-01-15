@@ -83,21 +83,21 @@ internal class CommonDialog(context: Context,
         // 기본 레이아웃 정의
         val dialogLayout = binding.dialog
         val layoutParam = dialogLayout.layoutParams
-        layoutParam.width = context.dpToPixel(dialogConfig.windowWidth)
-        binding.dialog.background = context.getDrawable(dialogConfig.windowBackground)
+        layoutParam.width = context.dpToPixel(dialogConfig.windowWidth).toInt()
+        binding.dialog.setBgDrawable(dialogConfig.windowBackground)
 
         // 타이틀 처리
         title?.let {
             binding.title.text = it
-            binding.title.textSize = dialogConfig.titleTextSize.toFloat()
+            binding.title.textSize = context.dpToPixel(dialogConfig.titleTextSize)
             binding.title.setTextColor(context.color(dialogConfig.titleColor))
             binding.title.setTypeface(null, dialogConfig.titleTypeface)
-            binding.title.letterSpacing = dialogConfig.titleLetterSpacing
+            binding.title.letterSpacing = context.dpToPixel(dialogConfig.titleLetterSpacing)
             binding.title.gravity = dialogConfig.textAlignment
-            binding.title.topMargin = dialogConfig.titleTopSpacing
-            binding.title.leftMargin = dialogConfig.titleHorizontalSpacing
-            binding.title.rightMargin = dialogConfig.titleHorizontalSpacing
-            binding.title.bottomMargin = dialogConfig.titleBottomSpacing
+            binding.title.topMargin = context.dpToPixel(dialogConfig.titleTopSpacing).toInt()
+            binding.title.leftMargin = context.dpToPixel(dialogConfig.titleHorizontalSpacing).toInt()
+            binding.title.rightMargin = context.dpToPixel(dialogConfig.titleHorizontalSpacing).toInt()
+            binding.title.bottomMargin = context.dpToPixel(dialogConfig.titleBottomSpacing).toInt()
             binding.titleBackground.visible()
         }
 
@@ -105,26 +105,26 @@ internal class CommonDialog(context: Context,
         if (dialogConfig.titleLineHeight != null && dialogConfig.titleLineColor != null) {
             val titleDividerLayout = binding.titleDivider
             val titleDividerLayoutParam = titleDividerLayout.layoutParams
-            titleDividerLayoutParam.height = dialogConfig.titleLineHeight
+            titleDividerLayoutParam.height = context.dpToPixel(dialogConfig.titleLineHeight).toInt()
             titleDividerLayout.setBackgroundColor(context.color(dialogConfig.titleLineColor))
-            titleDividerLayout.bottomMargin = dialogConfig.titleLineBottomPadding
-            titleDividerLayout.leftMargin = dialogConfig.titleLineHorizontalPadding ?: 0
-            titleDividerLayout.rightMargin = dialogConfig.titleLineHorizontalPadding ?: 0
+            titleDividerLayout.bottomMargin = context.dpToPixel(dialogConfig.titleLineBottomPadding).toInt()
+            titleDividerLayout.leftMargin = context.dpToPixel(dialogConfig.titleLineHorizontalPadding ?: 0).toInt()
+            titleDividerLayout.rightMargin = context.dpToPixel(dialogConfig.titleLineHorizontalPadding ?: 0).toInt()
             titleDividerLayout.visible()
         }
 
         // 메시지 처리
         message?.let {
             binding.message.text = it
-            binding.message.textSize = dialogConfig.messageTextSize.toFloat()
+            binding.message.textSize = context.dpToPixel(dialogConfig.messageTextSize)
             binding.message.setTextColor(context.color(dialogConfig.messageColor))
             binding.message.setTypeface(null, dialogConfig.messageTypeface)
-            binding.message.letterSpacing = dialogConfig.messageLetterSpacing
+            binding.message.letterSpacing = context.dpToPixel(dialogConfig.messageLetterSpacing)
             binding.message.maxLines = dialogConfig.messageLineLimit
             binding.message.gravity = dialogConfig.textAlignment
-            binding.message.topMargin = dialogConfig.messageTopSpacing
-            binding.message.leftMargin = dialogConfig.messageHorizontalSpacing
-            binding.message.rightMargin = dialogConfig.messageHorizontalSpacing
+            binding.message.topMargin = context.dpToPixel(dialogConfig.messageTopSpacing).toInt()
+            binding.message.leftMargin = context.dpToPixel(dialogConfig.messageHorizontalSpacing).toInt()
+            binding.message.rightMargin = context.dpToPixel(dialogConfig.messageHorizontalSpacing).toInt()
             binding.message.visible()
         }
 
@@ -175,14 +175,14 @@ internal class CommonDialog(context: Context,
         if (isButtonLayout) {
             val buttonLayout = binding.buttonLayout
             val buttonLayoutParam = buttonLayout.layoutParams
-            buttonLayoutParam.height = dialogConfig.buttonHeight
-            buttonLayout.topMargin = dialogConfig.buttonTopSpacing
+            buttonLayoutParam.height = context.dpToPixel(dialogConfig.buttonHeight).toInt()
+            buttonLayout.topMargin = context.dpToPixel(dialogConfig.buttonTopSpacing).toInt()
 
             // 버튼 레이아웃 구분선
             if (dialogConfig.buttonLineHeight != null && dialogConfig.buttonLineColor != null) {
                 val buttonDividerLayout = binding.buttonDivider
                 val buttonDividerLayoutParam = buttonDividerLayout.layoutParams
-                buttonDividerLayoutParam.height = dialogConfig.buttonLineHeight
+                buttonDividerLayoutParam.height = context.dpToPixel(dialogConfig.buttonLineHeight).toInt()
                 buttonDividerLayout.setBackgroundColor(context.color(dialogConfig.buttonLineColor))
                 buttonDividerLayout.visible()
             }
@@ -190,10 +190,10 @@ internal class CommonDialog(context: Context,
             // 좌측 버튼
             primaryLabel?.let { label ->
                 binding.primary.text = label
-                binding.primary.textSize = dialogConfig.primaryButtonTextSize.toFloat()
+                binding.primary.textSize = context.dpToPixel(dialogConfig.primaryButtonTextSize)
                 binding.primary.setTextColor(context.color(dialogConfig.primaryButtonTextColor))
                 binding.primary.setTypeface(null, dialogConfig.primaryButtonTextTypeface)
-                binding.primary.letterSpacing = dialogConfig.primaryButtonTextLetterSpacing
+                binding.primary.letterSpacing = context.dpToPixel(dialogConfig.primaryButtonTextLetterSpacing)
                 binding.primary.setBgDrawable(dialogConfig.primaryButtonSelector)
 
                 // 1개의 버튼이고 리스트/입력폼 형식인 경우, listener 처리를 구분한다.
@@ -229,20 +229,20 @@ internal class CommonDialog(context: Context,
             dialogConfig.buttonVerticalLineColor?.let {
                 val buttonVerticalDivider = binding.buttonVerticalDivider
                 val buttonVerticalDividerParam = buttonVerticalDivider.layoutParams
-                buttonVerticalDividerParam.width = dialogConfig.buttonVerticalLineWidth ?: 0
+                buttonVerticalDividerParam.width = context.dpToPixel(dialogConfig.buttonVerticalLineWidth ?: 0).toInt()
                 buttonVerticalDivider.setBackgroundColor(context.color(it))
-                buttonVerticalDivider.topMargin = dialogConfig.buttonVerticalLinePadding ?: 0
-                buttonVerticalDivider.bottomMargin = dialogConfig.buttonVerticalLinePadding ?: 0
+                buttonVerticalDivider.topMargin = context.dpToPixel(dialogConfig.buttonVerticalLinePadding ?: 0).toInt()
+                buttonVerticalDivider.bottomMargin = context.dpToPixel(dialogConfig.buttonVerticalLinePadding ?: 0).toInt()
                 buttonVerticalDivider.visible()
             }
 
             // 우측 버튼
             secondaryLabel?.let { label ->
                 binding.secondary.text = label
-                binding.secondary.textSize = dialogConfig.secondaryButtonTextSize.toFloat()
+                binding.secondary.textSize = context.dpToPixel(dialogConfig.secondaryButtonTextSize)
                 binding.secondary.setTextColor(context.color(dialogConfig.secondaryButtonTextColor))
                 binding.secondary.setTypeface(null, dialogConfig.secondaryButtonTextTypeface)
-                binding.secondary.letterSpacing = dialogConfig.secondaryButtonTextLetterSpacing
+                binding.secondary.letterSpacing = context.dpToPixel(dialogConfig.secondaryButtonTextLetterSpacing)
                 binding.secondary.setBgDrawable(dialogConfig.secondaryButtonSelector)
 
                 // 리스트/입력폼 형식인 경우, listener 처리를 구분한다.
