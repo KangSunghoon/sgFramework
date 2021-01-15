@@ -19,6 +19,7 @@ import com.ksfams.sgframework.ui.dialog.adapter.DialogAdapter
 import com.ksfams.sgframework.ui.dialog.builder.DialogBuilder
 import com.ksfams.sgframework.ui.dialog.listener.OnConfirmClickedListener
 import com.ksfams.sgframework.ui.dialog.listener.OnItemClickedListener
+import com.ksfams.sgframework.utils.dpToPixel
 
 /**
  *
@@ -82,8 +83,8 @@ internal class CommonDialog(context: Context,
         // 기본 레이아웃 정의
         val dialogLayout = binding.dialog
         val layoutParam = dialogLayout.layoutParams
-        layoutParam.width = dialogConfig.windowWidth
-        binding.dialog.setBackgroundColor(dialogConfig.windowBackground)
+        layoutParam.width = context.dpToPixel(dialogConfig.windowWidth)
+        binding.dialog.background = context.getDrawable(dialogConfig.windowBackground)
 
         // 타이틀 처리
         title?.let {
