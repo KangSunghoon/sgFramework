@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.Window
@@ -89,7 +90,7 @@ internal class CommonDialog(context: Context,
         // 타이틀 처리
         title?.let {
             binding.title.text = it
-            binding.title.textSize = context.dpToPixel(dialogConfig.titleTextSize)
+            binding.title.setTextSize(TypedValue.COMPLEX_UNIT_DIP, dialogConfig.titleTextSize.toFloat())
             binding.title.setTextColor(context.color(dialogConfig.titleColor))
             binding.title.setTypeface(null, dialogConfig.titleTypeface)
             binding.title.letterSpacing = context.dpToPixel(dialogConfig.titleLetterSpacing)
@@ -98,25 +99,26 @@ internal class CommonDialog(context: Context,
             binding.title.leftMargin = context.dpToPixel(dialogConfig.titleHorizontalSpacing).toInt()
             binding.title.rightMargin = context.dpToPixel(dialogConfig.titleHorizontalSpacing).toInt()
             binding.title.bottomMargin = context.dpToPixel(dialogConfig.titleBottomSpacing).toInt()
+            binding.titleBackground.setBackgroundColor(context.color(dialogConfig.titleBackgroundColor))
             binding.titleBackground.visible()
-        }
 
-        // 타이틀 구분선 처리
-        if (dialogConfig.titleLineHeight != null && dialogConfig.titleLineColor != null) {
-            val titleDividerLayout = binding.titleDivider
-            val titleDividerLayoutParam = titleDividerLayout.layoutParams
-            titleDividerLayoutParam.height = context.dpToPixel(dialogConfig.titleLineHeight).toInt()
-            titleDividerLayout.setBackgroundColor(context.color(dialogConfig.titleLineColor))
-            titleDividerLayout.bottomMargin = context.dpToPixel(dialogConfig.titleLineBottomPadding).toInt()
-            titleDividerLayout.leftMargin = context.dpToPixel(dialogConfig.titleLineHorizontalPadding ?: 0).toInt()
-            titleDividerLayout.rightMargin = context.dpToPixel(dialogConfig.titleLineHorizontalPadding ?: 0).toInt()
-            titleDividerLayout.visible()
+            // 타이틀 구분선 처리
+            if (dialogConfig.titleLineHeight != null && dialogConfig.titleLineColor != null) {
+                val titleDividerLayout = binding.titleDivider
+                val titleDividerLayoutParam = titleDividerLayout.layoutParams
+                titleDividerLayoutParam.height = context.dpToPixel(dialogConfig.titleLineHeight).toInt()
+                titleDividerLayout.setBackgroundColor(context.color(dialogConfig.titleLineColor))
+                titleDividerLayout.bottomMargin = context.dpToPixel(dialogConfig.titleLineBottomPadding).toInt()
+                titleDividerLayout.leftMargin = context.dpToPixel(dialogConfig.titleLineHorizontalPadding ?: 0).toInt()
+                titleDividerLayout.rightMargin = context.dpToPixel(dialogConfig.titleLineHorizontalPadding ?: 0).toInt()
+                titleDividerLayout.visible()
+            }
         }
 
         // 메시지 처리
         message?.let {
             binding.message.text = it
-            binding.message.textSize = context.dpToPixel(dialogConfig.messageTextSize)
+            binding.message.setTextSize(TypedValue.COMPLEX_UNIT_DIP, dialogConfig.messageTextSize.toFloat())
             binding.message.setTextColor(context.color(dialogConfig.messageColor))
             binding.message.setTypeface(null, dialogConfig.messageTypeface)
             binding.message.letterSpacing = context.dpToPixel(dialogConfig.messageLetterSpacing)
@@ -191,7 +193,7 @@ internal class CommonDialog(context: Context,
             // 좌측 버튼
             primaryLabel?.let { label ->
                 binding.primary.text = label
-                binding.primary.textSize = context.dpToPixel(dialogConfig.primaryButtonTextSize)
+                binding.primary.setTextSize(TypedValue.COMPLEX_UNIT_DIP, dialogConfig.primaryButtonTextSize.toFloat())
                 binding.primary.setTextColor(context.color(dialogConfig.primaryButtonTextColor))
                 binding.primary.setTypeface(null, dialogConfig.primaryButtonTextTypeface)
                 binding.primary.letterSpacing = context.dpToPixel(dialogConfig.primaryButtonTextLetterSpacing)
@@ -240,7 +242,7 @@ internal class CommonDialog(context: Context,
             // 우측 버튼
             secondaryLabel?.let { label ->
                 binding.secondary.text = label
-                binding.secondary.textSize = context.dpToPixel(dialogConfig.secondaryButtonTextSize)
+                binding.secondary.setTextSize(TypedValue.COMPLEX_UNIT_DIP, dialogConfig.secondaryButtonTextSize.toFloat())
                 binding.secondary.setTextColor(context.color(dialogConfig.secondaryButtonTextColor))
                 binding.secondary.setTypeface(null, dialogConfig.secondaryButtonTextTypeface)
                 binding.secondary.letterSpacing = context.dpToPixel(dialogConfig.secondaryButtonTextLetterSpacing)

@@ -55,6 +55,7 @@ object DialogBuilder {
      * @property windowWidth: Dialog width size. Default is `280dp`
      * @property windowBackground: Dialog background Drawable resource
      * @property textAlignment: text 정렬. Default is `Gravity.CENTER`
+     * @property titleBackgroundColor: title 영역 배경 색상. Default is `R.color.RGB_FFFFFFFF`
      * @property titleTopSpacing: title text top padding. title 이 없을 경우, message top padding 값으로 사용됨. Default is `13dp`
      * @property titleBottomSpacing: title text bottom padding. Default is `18dp`
      * @property titleHorizontalSpacing: title text horizontal padding. Default is `25dp`
@@ -95,6 +96,7 @@ object DialogBuilder {
                                       val windowWidth: Int = 280,
                                       @DrawableRes val windowBackground: Int = R.drawable.dialog_rounded,
                                       val textAlignment: Int = Gravity.CENTER,
+                                      @ColorRes val titleBackgroundColor: Int = R.color.RGB_FFFFFFFF,
                                       val titleTopSpacing: Int = 13,
                                       val titleBottomSpacing: Int = 18,
                                       val titleHorizontalSpacing: Int = 25,
@@ -138,7 +140,7 @@ object DialogBuilder {
          */
         fun getBuilder(): ConfigBuilder {
             return ConfigBuilder(systemDim, windowWidth, windowBackground, textAlignment,
-                    titleTopSpacing, titleBottomSpacing, titleHorizontalSpacing, titleTextSize, titleColor, titleTypeface, titleLetterSpacing, titleLineColor, titleLineHeight, titleLineBottomPadding, titleLineHorizontalPadding,
+                    titleBackgroundColor, titleTopSpacing, titleBottomSpacing, titleHorizontalSpacing, titleTextSize, titleColor, titleTypeface, titleLetterSpacing, titleLineColor, titleLineHeight, titleLineBottomPadding, titleLineHorizontalPadding,
                     messageTopSpacing, messageHorizontalSpacing, messageLineLimit, messageTextSize, messageColor, messageTypeface, messageLetterSpacing,
                     buttonHeight, buttonTopSpacing, buttonLineColor, buttonLineHeight,
                     primaryButtonSelector, primaryButtonTextSize, primaryButtonTextColor, primaryButtonTextTypeface, primaryButtonTextLetterSpacing,
@@ -151,6 +153,7 @@ object DialogBuilder {
                     + LINE_SEP + "windowWidth: " + windowWidth.toString()
                     + LINE_SEP + "windowBackground: " + windowBackground.toString()
                     + LINE_SEP + "textAlignment: " + textAlignment.toString()
+                    + LINE_SEP + "titleBackgroundColor: " + titleBackgroundColor.toString()
                     + LINE_SEP + "titleTopSpacing: " + titleTopSpacing.toString()
                     + LINE_SEP + "titleBottomSpacing: " + titleBottomSpacing.toString()
                     + LINE_SEP + "titleHorizontalSpacing: " + titleHorizontalSpacing.toString()
@@ -196,6 +199,7 @@ object DialogBuilder {
      * @property windowWidth: Dialog width size. Default is `280dp`
      * @property windowBackground: Dialog background Drawable resource
      * @property textAlignment: text 정렬. Default is `Gravity.CENTER`
+     * @property titleBackgroundColor: title 영역 배경 색상. Default is `R.color.RGB_FFFFFFFF`
      * @property titleTopSpacing: title text top padding. title 이 없을 경우, message top padding 값으로 사용됨. Default is `13dp`
      * @property titleBottomSpacing: title text bottom padding. Default is `18dp`
      * @property titleHorizontalSpacing: title text horizontal padding. Default is `25dp`
@@ -236,6 +240,7 @@ object DialogBuilder {
                              var windowWidth: Int = 280,
                              @DrawableRes var windowBackground: Int = R.drawable.dialog_rounded,
                              var textAlignment: Int = Gravity.CENTER,
+                             @ColorRes var titleBackgroundColor: Int = R.color.RGB_FFFFFFFF,
                              var titleTopSpacing: Int = 13,
                              var titleBottomSpacing: Int = 18,
                              var titleHorizontalSpacing: Int = 25,
@@ -276,6 +281,7 @@ object DialogBuilder {
         fun setWindowWidth(windowWidth: Int) = apply { this.windowWidth = windowWidth }
         fun setWindowBackground(windowBackground: Int) = apply { this.windowBackground = windowBackground }
         fun setTextAlignment(textAlignment: Int) = apply { this.textAlignment = textAlignment }
+        fun setTitleBackgroundColor(titleBackgroundColor: Int) = apply { this.titleBackgroundColor = titleBackgroundColor }
         fun setTitleTopSpacing(titleTopSpacing: Int) = apply { this.titleTopSpacing = titleTopSpacing }
         fun setTitleBottomSpacing(titleBottomSpacing: Int) = apply { this.titleBottomSpacing = titleBottomSpacing }
         fun setTitleHorizontalSpacing(titleHorizontalSpacing: Int) = apply { this.titleHorizontalSpacing = titleHorizontalSpacing }
@@ -313,7 +319,7 @@ object DialogBuilder {
         fun setSecondaryButtonTextLetterSpacing(secondaryButtonTextLetterSpacing: Float) = apply { this.secondaryButtonTextLetterSpacing = secondaryButtonTextLetterSpacing }
 
         fun build() = Config(systemDim, windowWidth, windowBackground, textAlignment,
-                titleTopSpacing, titleBottomSpacing, titleHorizontalSpacing, titleTextSize, titleColor, titleTypeface, titleLetterSpacing, titleLineColor, titleLineHeight, titleLineBottomPadding, titleLineHorizontalPadding,
+                titleBackgroundColor, titleTopSpacing, titleBottomSpacing, titleHorizontalSpacing, titleTextSize, titleColor, titleTypeface, titleLetterSpacing, titleLineColor, titleLineHeight, titleLineBottomPadding, titleLineHorizontalPadding,
                 messageTopSpacing, messageHorizontalSpacing, messageLineLimit, messageTextSize, messageColor, messageTypeface, messageLetterSpacing,
                 buttonHeight, buttonTopSpacing, buttonLineColor, buttonLineHeight,
                 primaryButtonSelector, primaryButtonTextSize, primaryButtonTextColor, primaryButtonTextTypeface, primaryButtonTextLetterSpacing,
