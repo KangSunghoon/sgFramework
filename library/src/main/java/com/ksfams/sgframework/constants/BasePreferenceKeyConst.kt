@@ -14,7 +14,6 @@ package com.ksfams.sgframework.constants
  * 강성훈      12/18/20     신규 개발.
  */
 
-// git branch 테스트 ----
 open class BasePreferenceKeyConst {
     companion object {
         /** Preference Key - Device UUID */
