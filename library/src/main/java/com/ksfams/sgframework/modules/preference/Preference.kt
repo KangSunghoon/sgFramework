@@ -32,10 +32,9 @@ class Preference private constructor(private val context: Context) {
     companion object : SingletonHolder<Preference, Context>(::Preference)
 
     private val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    private val editor: SharedPreferences.Editor
+    private val editor: SharedPreferences.Editor = preferences.edit()
 
     init {
-        editor = preferences.edit()
         editor.apply()
     }
 
